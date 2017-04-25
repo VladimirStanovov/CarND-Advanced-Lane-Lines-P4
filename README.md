@@ -103,13 +103,14 @@ You may see the resluts of these function on the followin images:
 ![alt text][image5]
 ![alt text][image6]
 
-####5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
+####5. Calculateing the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+The code for calculating the curvature is provided in cell 16. It simply uses the known equation, and applies known standard lane width.
+An example of vehicle bias calculation (to the left lane) is performed in cell 19. It simply uses 3rd parameter of the fitted polynomial as it appears to be a relatively good estimation of the lane position. However, video processing pipeline uses different approach.
 
-####6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
+####6. Example image of result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+Cell 19 contains getting the lanes positions and plotting it back on the original image, as well as putting text with curvature and bias values on the image.
 
 ![alt text][image7]
 
