@@ -14,12 +14,12 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./test_images/straight_lines1.jpg "Initial image"
-[image2]: ./output_images/test5_undistorted.jpg "Undistorted"
-[image3]: ./output_images/test5_thresholded.jpg "Thresholded method 1"
-[image4]: ./output_images/test5_thresholded2.jpg "Thresholded method 2"
-[image5]: ./output_images/test5_lanes_boxes.jpg "Lines and boxes"
-[image6]: ./output_images/test5_lanes_area.jpg "Lines search area"
-[image7]: ./output_images/test5_final_visualisation.jpg "Final output"
+[image2]: ./output_images/test6_undistorted.jpg "Undistorted"
+[image3]: ./output_images/test6_thresholded.jpg "Thresholded method 1"
+[image4]: ./output_images/test6_thresholded2.jpg "Thresholded method 2"
+[image5]: ./output_images/test6_lanes_boxes.jpg "Lines and boxes"
+[image6]: ./output_images/test6_lanes_area.jpg "Lines search area"
+[image7]: ./output_images/test6_final_visualisation.jpg "Final output"
 [video1]: ./processed_project_video.mp4 "Video"
 [video2]: ./processed_challenge_video.mp4 "Video"
 [video3]: ./processed_harder_challenge_video.mp4 "Video"
