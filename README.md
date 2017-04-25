@@ -13,8 +13,8 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./test_images/straight_lines1.jpg "Initial image"
-[image2]: ./output_images/straight_lines1_undistorted.jpg "Undistorted"
+[image1]: ./camera_cal/calibration1.jpg "Initial image"
+[image2]: ./output_images/calibration1_undistorted2.jpg "Undistorted"
 [image3]: ./output_images/test6_thresholded.jpg "Thresholded method 1"
 [image4]: ./output_images/test6_thresholded2.jpg "Thresholded method 2"
 [image5]: ./output_images/test6_lanes_boxes.jpg "Lines and boxes"
