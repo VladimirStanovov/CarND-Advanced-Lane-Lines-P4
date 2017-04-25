@@ -15,7 +15,7 @@ The goals / steps of this project are the following:
 
 [image1]: ./camera_cal/calibration1.jpg "Initial image"
 [image2]: ./output_images/calibration1_undistorted2.jpg "Undistorted"
-[image2_2]: ./output_images/straight_lines_undistorted.jpg "Undistorted 2"
+[image2_2]: ./output_images/straight_lines1_undistorted.jpg "Undistorted 2"
 [image3]: ./output_images/test6_thresholded.jpg "Thresholded method 1"
 [image4]: ./output_images/test6_thresholded2.jpg "Thresholded method 2"
 [image5]: ./output_images/test6_lanes_boxes.jpg "Lines and boxes"
