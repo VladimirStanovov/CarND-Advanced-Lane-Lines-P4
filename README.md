@@ -18,6 +18,7 @@ The goals / steps of this project are the following:
 [image2_2]: ./output_images/straight_lines1_undistorted.jpg "Undistorted 2"
 [image3]: ./output_images/test6_thresholded.jpg "Thresholded method 1"
 [image4]: ./output_images/test6_thresholded2.jpg "Thresholded method 2"
+[image4_2]: ./output_images/straight_lines2_thresholded2.jpg "Thresholded method 2"
 [image5]: ./output_images/test6_lanes_boxes.jpg "Lines and boxes"
 [image6]: ./output_images/test6_lanes_area.jpg "Lines search area"
 [image7]: ./output_images/test6_final_visualisation.jpg "Final output"
@@ -63,6 +64,8 @@ hls_binary = hls_select(img, thresh=(150, 255))
 hsv_binary = hsv_select(img, thresh=(150, 255))
 ```
 
+####3. Perspective transform.
+
 Cell 10 contains basic image transformation functions, which include getting the perspective transformation M, thresholding, and getting the bird's eye view thresholded image. The following vertexes were used to get perspective:
 
 ```
@@ -87,41 +90,18 @@ finalimg = get_thresholded(newimg)
 
 Further is this project, I used the second option (get perspective -> threshold).
 
-####3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
+I verified that my perspective transform was working as expected by looking at the transformed binary image and making sure that both straight lines are parallel to y axes.
 
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
+![alt text][image4_2]
 
-```
-src = np.float32(
-    [[(img_size[0] / 2) - 55, img_size[1] / 2 + 100],
-    [((img_size[0] / 6) - 10), img_size[1]],
-    [(img_size[0] * 5 / 6) + 60, img_size[1]],
-    [(img_size[0] / 2 + 55), img_size[1] / 2 + 100]])
-dst = np.float32(
-    [[(img_size[0] / 4), 0],
-    [(img_size[0] / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), 0]])
+####4. Identifying lane-line pixels and fitting their positions with a polynomial
 
-```
-This resulted in the following source and destination points:
-
-| Source        | Destination   | 
-|:-------------:|:-------------:| 
-| 585, 460      | 320, 0        | 
-| 203, 720      | 320, 720      |
-| 1127, 720     | 960, 720      |
-| 695, 460      | 960, 0        |
-
-I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
-
-![alt text][image4]
-
-####4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
-
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+Identifying line-line pixels is split in two functions: getinitiallines (cell 11) finds the lines with 9 sliding windows, after that the 2nd order polynomials are fit to both lines' pixels. It also draws rectangles around found windows.
+The getnextlines function (cell 12) uses fitted polynomials to find new pixels, and fit new polinomials to them. Is also drwas the "search area" around fitted lines.
+You may see the resluts of these function on the followin images:
 
 ![alt text][image5]
+![alt text][image6]
 
 ####5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
@@ -131,7 +111,7 @@ I did this in lines # through # in my code in `my_other_file.py`
 
 I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
 
-![alt text][image6]
+![alt text][image7]
 
 ---
 
