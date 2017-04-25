@@ -63,12 +63,29 @@ hls_binary = hls_select(img, thresh=(150, 255))
 hsv_binary = hsv_select(img, thresh=(150, 255))
 ```
 
-Cell 10 contains basic image transformation functions, which include getting the perspective transformation M, thresholding 
+Cell 10 contains basic image transformation functions, which include getting the perspective transformation M, thresholding, and getting the bird's eye view thresholded image. The following vertexes were used to get perspective:
 
-Provide an example of a binary image result.
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
-
+```
+[[[img.shape[1]*0.41,img.shape[0]*0.65]],[[img.shape[1]*0.59,img.shape[0]*0.65]],
+[[img.shape[1]*0.0,img.shape[0]*0.95]],[[img.shape[1]*1.0,img.shape[0]*0.95]]]
+```
 ![alt text][image3]
+
+On this image you may see that lines get wider when they are further from the camera. Although this could be a good option, this happens due to the fact that we first perform binary thresholding, and then make perspective transform:
+```
+newimg = get_thresholded(img)
+finalimg = getperspectiveimage(newimg,M)
+```
+However, we could first make perspective transform, and then threshold the image:
+```
+newimg = getperspectiveimage(img,M)
+finalimg = get_thresholded(newimg)
+```
+...which makes a significantly different result:
+
+![alt text][image4]
+
+Further is this project, I used the second option (get perspective -> threshold).
 
 ####3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
