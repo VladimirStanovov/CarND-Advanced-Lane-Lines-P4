@@ -136,8 +136,9 @@ At the end, we perform a check wheather the parameters of both lines are close e
 Here's a [link to my video result for project video](./processed_project_video.mp4)
 
 There are also videos for both challenges, which, unfortunately, don't show good results.
-[challenge video](./processed_challenge_video.mp4)
-[harder_challenge video](./processed_harder_challenge_video.mp4)
+
+Here's the [challenge video](./processed_challenge_video.mp4)
+Here's the [harder_challenge video](./processed_harder_challenge_video.mp4)
 ---
 
 ###Discussion
