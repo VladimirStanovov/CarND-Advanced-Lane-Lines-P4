@@ -137,8 +137,6 @@ Here's a [link to my video result for project video](./processed_project_video.m
 
 There are also videos for both challenges, which, unfortunately, don't show good results.
 
-Here's the [challenge video](./processed_challenge_video.mp4)
-Here's the [harder_challenge video](./processed_harder_challenge_video.mp4)
 ---
 
 ###Discussion
