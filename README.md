@@ -15,6 +15,7 @@ The goals / steps of this project are the following:
 
 [image1]: ./camera_cal/calibration1.jpg "Initial image"
 [image2]: ./output_images/calibration1_undistorted2.jpg "Undistorted"
+[image2_2]: ./output_images/straight_lines_undistorted.jpg "Undistorted 2"
 [image3]: ./output_images/test6_thresholded.jpg "Thresholded method 1"
 [image4]: ./output_images/test6_thresholded2.jpg "Thresholded method 2"
 [image5]: ./output_images/test6_lanes_boxes.jpg "Lines and boxes"
@@ -44,10 +45,27 @@ Undistorted image
 
 ###Pipeline (single images)
 
-####1. Provide an example of a distortion-corrected image.
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
-![alt text][image2]
-####2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
+####1. Distortion-corrected test image.
+After testing on chessboard images, I applied the distortion correction to one of the test images like this one:
+![alt text][image2_2]
+
+####2. Color transforms, gradients or other methods to create a thresholded binary image.
+
+Cells 4-8 in Project4.ipynb are responsible for functions performing Sobel thresholding, gradient calculation, and using HLS (S channel used) & HSV (V channel used) color maps. Cell 9 combines individual thresholding methods with certain parameters. 
+
+```
+ksize = 5
+gradx = abs_sobel_thresh(img, orient='x', sobel_kernel=ksize, thresh=(25, 100))
+grady = abs_sobel_thresh(img, orient='y', sobel_kernel=ksize, thresh=(25, 100))
+mag_binary = mag_thresh(img, sobel_kernel=ksize, mag_thresh=(25, 100))
+dir_binary = dir_threshold(img, sobel_kernel=ksize, thresh=(0.75, 1.25))
+hls_binary = hls_select(img, thresh=(150, 255))
+hsv_binary = hsv_select(img, thresh=(150, 255))
+```
+
+Cell 10 contains basic image transformation functions, which include getting the perspective transformation M, thresholding 
+
+Provide an example of a binary image result.
 I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
 
 ![alt text][image3]
