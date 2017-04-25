@@ -118,15 +118,28 @@ Cell 19 contains getting the lanes positions and plotting it back on the origina
 
 ###Pipeline (video)
 
-####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
+The video pileline uses functions processnewimage and processnextimage in cells 17 and 18. These are similar to cells 11 and 12, but return a whole set of image processing parameters. Cell 20 defines the Line class used in the pipeline. Cell 21 contains the main pipeline of video processing, i.e. the processimage function, which gets the raw image and returns the processed one.
+First, this function calls processnewimage, and using the returned values calculates averaged line positions on the image (bestx) over last 5 steps.  Moreover, it keeps track of fit parameters using exponential smoothing:
 
-Here's a [link to my video result](./project_video.mp4)
+```
+LeftLine.best_fit[0] = LeftLine.best_fit[0]*0.8 + 0.2*LeftLine.current_fit[0]
+LeftLine.best_fit[1] = LeftLine.best_fit[1]*0.8 + 0.2*LeftLine.current_fit[1]
+LeftLine.best_fit[2] = LeftLine.best_fit[2]*0.8 + 0.2*LeftLine.current_fit[2]
+RightLine.best_fit[0] = RightLine.best_fit[0]*0.8 + 0.2*RightLine.current_fit[0]
+RightLine.best_fit[1] = RightLine.best_fit[1]*0.8 + 0.2*RightLine.current_fit[1]
+RightLine.best_fit[2] = RightLine.best_fit[2]*0.8 + 0.2*RightLine.current_fit[2]
+```
 
+Bias calculation is performed using 25% of the lane height (because the lanes may have curvature!) and uses averaged bestx parameters of each line. For curvature calculation, the averaged parameters are used as well, this apperas to make estimations more stable.
+At the end, we perform a check wheather the parameters of both lines are close enough (lines are parallel if they are!), and if they are not, we perform lanes search again. Otherwise, for the next frame, the processnextimage function is called, which uses averaged known lanes positions. If this part fails to find lanes, the known parameters are returned, and the next step again searches for the lanes using sliding window in processnewimage function.
+
+Here's a [link to my video result for project video](./processed_project_video.mp4)
+
+There are also videos for both challenges, which, unfortunately, don't show good results.
+[challenge video](./processed_challenge_video.mp4)
+[harder_challenge video](./processed_harder_challenge_video.mp4)
 ---
 
 ###Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
-
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
-
+To succesfully solve the challenges one may think of making dinamic change of the vertexes that are cutting the part of the image with the road. Moreover, non-linear transformations of the cutted part may be helpfull, especially those which are based on the curvature value.
